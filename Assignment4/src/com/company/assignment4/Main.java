@@ -17,23 +17,33 @@ public class Main {
             try
             {
                 rollNo = scan.next();
-                batch.getStudentarray()[i] = new Student(rollNo);
+                batch.getStudentarray()[i] = new Student();
                 batch.getStudentarray()[i].setRollNo(rollNo);
             }
             catch (WrongRollNo e)
             {
-                System.out.println("wrong here");
+                System.out.println("Incorrect Roll Number");
                 i = i - 1;
                 continue;
             }
-//            batch.getStudentarray()[i].setRollNo(rollNo);
-//            m = scan.nextInt();
-//            for (int j = 0; j < m; j++)
-//            {
-//                courseCode = scan.next();
-//                grade = scan.next();
-//                batch.getStudentarray()[i].getCourse()[j] = new Course(courseCode, grade);
-//            }
+            m = scan.nextInt();
+            for (int j = 0; j < m; j++)
+            {
+                try
+                {
+                    courseCode = scan.next();
+                    grade = scan.next();
+                    batch.getStudentarray()[i].getCourse()[j] = new Course();
+                    batch.getStudentarray()[i].getCourse()[j].setCourse(courseCode);
+                }
+                catch (WrongCourse e)
+                {
+                    System.out.println("Wrong Course Code");
+                    j = j - 1;
+                    continue;
+                }
+
+            }
         }
     }
 }

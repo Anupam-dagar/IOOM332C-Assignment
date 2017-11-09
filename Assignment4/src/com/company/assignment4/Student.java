@@ -4,10 +4,8 @@ public class Student {
     private String rollNo;
     private Course[] course;
 
-    public Student (String rollNo)
-    {
-        this.rollNo = rollNo;
-    }
+    public Student ()
+    {}
 
     public Student (String rollNo, int numberCourses)
     {
@@ -35,7 +33,7 @@ public class Student {
             flag2 = 1;
         }
 
-        if (Integer.parseInt(rollNo.substring(7,10)) > 0 || Integer.parseInt(rollNo.substring(7,10)) <= 199)
+        if (Integer.parseInt(rollNo.substring(7,10)) > 0 && Integer.parseInt(rollNo.substring(7,10)) <= 199)
         {
             flag3 = 1;
         }
