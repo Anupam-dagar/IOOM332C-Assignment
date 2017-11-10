@@ -57,4 +57,9 @@ public class Student {
     public Course[] getCourse() {
         return course;
     }
+
+    public void setCourseSize(int size)
+    {
+        course = new Course[size];
+    }
 }

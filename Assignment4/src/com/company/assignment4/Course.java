@@ -59,7 +59,16 @@ public class Course {
         this.course = course;
     }
 
-    public void setGrade(String grade) {
+    public void setGrade(String grade) throws WrongGrade {
+        int flag = 0;
+        if (grade.equals("A+") || grade.equals("A") || grade.equals("B+") || grade.equals("B") || grade.equals("C") || grade.equals("D") || grade.equals("E") || grade.equals("F") || grade.equals("I"))
+        {
+            flag = 1;
+        }
+        if (flag == 0)
+        {
+            throw new WrongGrade();
+        }
         this.grade = grade;
     }
 
