@@ -3,7 +3,7 @@ package com.company.assignment4;
 public class Student {
     private String rollNo;
     private Course[] course;
-
+    private float cgpa;
     public Student ()
     {}
 
@@ -17,7 +17,6 @@ public class Student {
         int flag = 0;
         int flag2 = 0;
         int flag3 = 0;
-
         if (rollNo.length() != 10)
         {
             throw new WrongRollNo();
@@ -61,5 +60,23 @@ public class Student {
     public void setCourseSize(int size)
     {
         course = new Course[size];
+    }
+
+    public void setCgpa()
+    {
+        cgpa = 0;
+        float sumCourseCredits = 0;
+        for (int i = 0; i < this.course.length; i++)
+        {
+            this.course[i].setGradeValue(this.course[i].getGrade());
+            sumCourseCredits = sumCourseCredits + this.course[i].getCourseCredits();
+            cgpa = cgpa + this.course[i].getCourseCredits()*this.course[i].getGradeValue();
+        }
+        cgpa = cgpa/sumCourseCredits;
+    }
+
+    public float getCgpa()
+    {
+        return cgpa;
     }
 }

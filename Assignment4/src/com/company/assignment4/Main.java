@@ -9,6 +9,9 @@ public class Main {
         int n = scan.nextInt();
         String rollNo = "";
         int m;
+        int t;
+        int rollFlag;
+        float[] cgArray = new float[n];
         String courseCode;
         String grade;
         Batch batch = new Batch(n);
@@ -16,7 +19,6 @@ public class Main {
         {
             try
             {
-                System.out.println("enter roll no");
                 rollNo = scan.next();
                 batch.getStudentarray()[i] = new Student();
                 batch.getStudentarray()[i].setRollNo(rollNo);
@@ -33,25 +35,9 @@ public class Main {
             {
                 try
                 {
-                    System.out.println("enter course code");
                     courseCode = scan.next();
                     batch.getStudentarray()[i].getCourse()[j] = new Course();
                     batch.getStudentarray()[i].getCourse()[j].setCourse(courseCode);
-                    int flagGrade = 1;
-                    while (flagGrade == 1)
-                    {
-                        try
-                        {
-                            System.out.println("enter grade");
-                            grade = scan.next();
-                            batch.getStudentarray()[i].getCourse()[j].setGrade(grade);
-                            flagGrade = 0;
-                        }
-                        catch (WrongGrade e)
-                        {
-                            System.out.println("Illegal Grade");
-                        }
-                    }
                 }
                 catch (WrongCourse e)
                 {
@@ -59,7 +45,42 @@ public class Main {
                     j = j - 1;
                     continue;
                 }
+                int flagGrade = 1;
+                while (flagGrade == 1)
+                {
+                    try
+                    {
+                        grade = scan.next();
+                        batch.getStudentarray()[i].getCourse()[j].setGrade(grade);
+                        flagGrade = 0;
+                    }
+                    catch (WrongGrade e)
+                    {
+                        System.out.println("Illegal Grade");
+                    }
+                }
 
+            }
+            batch.getStudentarray()[i].setCgpa();
+            cgArray[i] = batch.getStudentarray()[i].getCgpa();
+        }
+        t = scan.nextInt();
+        for (int i = 0; i < t; i++)
+        {
+            rollFlag = 0;
+            rollNo = scan.next();
+            for (int j = 0; j < n; j++)
+            {
+                if (rollNo.equals(batch.getStudentarray()[j].getRollNo()))
+                {
+                    rollFlag = 1;
+                    System.out.printf("%.1f\n",cgArray[j]);
+                    break;
+                }
+            }
+            if (rollFlag == 0)
+            {
+                System.out.println("Roll Number not found");
             }
         }
     }
